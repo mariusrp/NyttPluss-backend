@@ -38,7 +38,7 @@ namespace Backend
             {
                 options.AddPolicy("AllowSpecificOrigin",
                     builder => builder
-                        .WithOrigins("https://nyttpluss-frontend.vercel.app")  // Adjust this to your front-end application's URL
+                        .WithOrigins("https://nyttpluss.vercel.app")  // Adjust this to your front-end application's URL
                         .AllowAnyHeader()
                         .AllowAnyMethod());
             });
