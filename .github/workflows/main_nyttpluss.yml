@@ -11,11 +11,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2 # Update to v2
+      - uses: actions/checkout@v4
 
-      # Debug step to list files in the current directory
-      - name: List files in directory
-        run: ls -al
+      # Debug step to list files in the root directory using PowerShell
+      - name: List files in root directory
+        run: Get-ChildItem
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
@@ -25,17 +25,13 @@ jobs:
 
       # Explicitly specifying the project file for building
       - name: Build with dotnet
-        run: |
-          cd Backend
-          dotnet build YourBackendProjectName.csproj --configuration Release
+        run: dotnet build Backend/Backend.csproj --configuration Release
 
       - name: dotnet publish
-        run: |
-          cd Backend/src
-          dotnet publish YourBackendProjectName.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish Backend/Backend.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2 # Update to v2
+        uses: actions/upload-artifact@v3
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
@@ -49,7 +45,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2 # Update to v2
+        uses: actions/download-artifact@v3
         with:
           name: .net-app
 
