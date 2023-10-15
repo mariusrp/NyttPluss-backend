@@ -1,0 +1,10 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+/Backend/.env
+.env
+appsettings.Development.json
+appsettings.Production.json
+appsettings.json
