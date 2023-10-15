@@ -56,7 +56,6 @@ namespace Backend.Controllers
             }
             catch (Exception ex)
             {
-                // Handle error (log it, return an error response, etc.)
                 return new JsonResult(new { success = false, message = ex.Message });
             }
         }
